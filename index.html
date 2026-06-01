@@ -635,7 +635,7 @@
   document.addEventListener('keydown',function(e){
     if(e.key==='Escape') closeModal();
   });
-  // Form submission — sends via Vercel API to hello@rgmedia.group
+  // Form submission — sends via EmailJS to hello@rgmedia.group
   function handleSubmit(e){
     e.preventDefault();
     const form=document.getElementById('contactForm');
@@ -644,22 +644,20 @@
     btn.textContent='Sending...';
     const formData=new FormData(form);
     const data=Object.fromEntries(formData.entries());
-    fetch('/api/contact',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify(data)
-    })
-    .then(res=>{
-      if(res.ok) return res.json();
-      return res.json().then(err=>{throw new Error(err.error||'Failed')});
-    })
-    .then(result=>{
+    const budgetLabels={'5k':'$5,000 - $10,000','10k':'$10,000 - $25,000','25k':'$25,000 - $50,000','50k':'$50,000+','tbd':'Not sure yet'};
+    emailjs.send('service_rgweb','template_contact',{
+      from_name: data.firstName+' '+data.lastName,
+      from_email: data.email,
+      company: data.company||'Not provided',
+      service: data.service,
+      message: data.message,
+      budget: budgetLabels[data.budget]||'Not specified',
+      to_email: 'hello@rgmedia.group'
+    }).then(()=>{
       form.style.display='none';
       document.getElementById('formSuccess').style.display='block';
-    })
-    .catch(err=>{
+    }).catch(err=>{
       btn.classList.remove('sending');
-      btn.textContent='Send Message ';
       btn.innerHTML='Send Message <span class="arr"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>';
       alert('Error sending message. Please email us at hello@rgmedia.group');
     });
@@ -710,6 +708,7 @@
 </script>
 
 <!-- React + Babel for the Tweaks panel -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
