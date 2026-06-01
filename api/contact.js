@@ -42,7 +42,7 @@ export default async function handler(req, res) {
     const adminHtml = `
       <div style="font-family:'Segoe UI',system-ui,sans-serif;max-width:600px;margin:0 auto;background:#fff;border-radius:16px;overflow:hidden;border:1px solid #e5e7eb">
         <div style="background:#0c0c0f;padding:32px;text-align:center">
-          <img src="${logoUrl}" alt="RGMedia.Group" width="180" style="margin-bottom:16px;display:inline-block"/>
+          <img src="${logoUrl}" alt="RGMedia.Group" width="120" style="margin-bottom:16px;display:inline-block"/>
           <h1 style="color:#f4f3ef;font-size:22px;margin:0;font-weight:700">New Project Inquiry</h1>
           <p style="color:#a9a9b0;font-size:14px;margin:8px 0 0">Submitted via rgmedia.group</p>
         </div>
@@ -86,7 +86,7 @@ export default async function handler(req, res) {
     const clientHtml = `
       <div style="font-family:'Segoe UI',system-ui,sans-serif;max-width:600px;margin:0 auto;background:#fff;border-radius:16px;overflow:hidden;border:1px solid #e5e7eb">
         <div style="background:#0c0c0f;padding:40px 32px;text-align:center">
-          <img src="${logoUrl}" alt="RGMedia.Group" width="180" style="margin-bottom:20px;display:inline-block"/>
+          <img src="${logoUrl}" alt="RGMedia.Group" width="120" style="margin-bottom:20px;display:inline-block"/>
           <h1 style="color:#f4f3ef;font-size:24px;margin:0;font-weight:700">Thank You, ${fullName}!</h1>
           <p style="color:#a9a9b0;font-size:15px;margin:12px 0 0">We received your project inquiry</p>
         </div>
