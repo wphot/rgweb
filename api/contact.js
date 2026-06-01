@@ -14,7 +14,7 @@ export default async function handler(req, res) {
     }
 
     const logoUrl = 'https://raw.githubusercontent.com/wphot/rgweb/main/assets/rg-logo-white.png';
-    const fromEmail = process.env.FROM_EMAIL || 'RG Media Group <hello@devs.rgmedia.group>';
+    const fromEmail = process.env.FROM_EMAIL || 'RGMedia.Group <hello@devs.rgmedia.group>';
     const toEmail = process.env.CONTACT_EMAIL || 'hello@devs.rgmedia.group';
 
     // Labels
@@ -42,7 +42,7 @@ export default async function handler(req, res) {
     const adminHtml = `
       <div style="font-family:'Segoe UI',system-ui,sans-serif;max-width:600px;margin:0 auto;background:#fff;border-radius:16px;overflow:hidden;border:1px solid #e5e7eb">
         <div style="background:#0c0c0f;padding:32px;text-align:center">
-          <img src="${logoUrl}" alt="RG Media Group" width="180" style="margin-bottom:16px;display:inline-block"/>
+          <img src="${logoUrl}" alt="RGMedia.Group" width="180" style="margin-bottom:16px;display:inline-block"/>
           <h1 style="color:#f4f3ef;font-size:22px;margin:0;font-weight:700">New Project Inquiry</h1>
           <p style="color:#a9a9b0;font-size:14px;margin:8px 0 0">Submitted via rgmedia.group</p>
         </div>
@@ -86,13 +86,13 @@ export default async function handler(req, res) {
     const clientHtml = `
       <div style="font-family:'Segoe UI',system-ui,sans-serif;max-width:600px;margin:0 auto;background:#fff;border-radius:16px;overflow:hidden;border:1px solid #e5e7eb">
         <div style="background:#0c0c0f;padding:40px 32px;text-align:center">
-          <img src="${logoUrl}" alt="RG Media Group" width="180" style="margin-bottom:20px;display:inline-block"/>
+          <img src="${logoUrl}" alt="RGMedia.Group" width="180" style="margin-bottom:20px;display:inline-block"/>
           <h1 style="color:#f4f3ef;font-size:24px;margin:0;font-weight:700">Thank You, ${fullName}!</h1>
           <p style="color:#a9a9b0;font-size:15px;margin:12px 0 0">We received your project inquiry</p>
         </div>
         <div style="padding:36px 32px">
           <p style="font-size:15px;color:#3d3d44;line-height:1.6;margin:0 0 24px">
-            Thank you for reaching out to <strong>RG Media Group</strong>. We have received your inquiry and our team will review your project details carefully.
+            Thank you for reaching out to <strong>RGMedia.Group</strong>. We have received your inquiry and our team will review your project details carefully.
           </p>
           <p style="font-size:15px;color:#3d3d44;line-height:1.6;margin:0 0 24px">
             Here is a summary of what you submitted:
@@ -125,7 +125,7 @@ export default async function handler(req, res) {
           </div>
         </div>
         <div style="padding:24px 32px;background:#f7f6f3;border-top:1px solid #e5e7eb;text-align:center">
-          <p style="font-size:13px;color:#7a7a83;margin:0 0 4px">RG Media Group</p>
+          <p style="font-size:13px;color:#7a7a83;margin:0 0 4px">RGMedia.Group</p>
           <p style="font-size:12px;color:#a9a9b0;margin:0">
             <a href="mailto:hello@rgmedia.group" style="color:#F02028;text-decoration:none">hello@rgmedia.group</a>
           </p>
@@ -166,7 +166,7 @@ export default async function handler(req, res) {
         body: JSON.stringify({
           from: fromEmail,
           to: [body.email],
-          subject: `Thank you for your inquiry, ${fullName} — RG Media Group`,
+          subject: `Thank you for your inquiry, ${fullName} — RGMedia.Group`,
           html: clientHtml
         })
       });
