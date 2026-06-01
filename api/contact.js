@@ -15,7 +15,7 @@ export default async function handler(req, res) {
 
     const logoUrl = 'https://raw.githubusercontent.com/wphot/rgweb/main/assets/rg-logo-white.png';
     const fromEmail = process.env.FROM_EMAIL || 'RG Media Group <hello@devs.rgmedia.group>';
-    const toEmail = process.env.CONTACT_EMAIL || 'hello@rgmedia.group';
+    const toEmail = process.env.CONTACT_EMAIL || 'hello@devs.rgmedia.group';
 
     // Labels
     const serviceLabels = {
