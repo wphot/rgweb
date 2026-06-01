@@ -204,25 +204,14 @@
   .cta .gmark{position:absolute;left:-60px;bottom:-90px;width:340px;opacity:.06;z-index:1}
 
   /* footer */
-  .foot{background:#0c0c0f;color:#cfcfd4;padding:80px 0 0}
-  .foot-top{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:48px;padding-bottom:60px;border-bottom:1px solid rgba(255,255,255,.08)}
-  .foot .brand{color:#fff;margin-bottom:20px}
-  .foot .blurb{color:#8d8d95;font-size:15px;max-width:30ch;line-height:1.65}
-  .foot .foot-social{display:flex;gap:14px;margin-top:24px}
-  .foot .foot-social a{width:40px;height:40px;border-radius:12px;border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;transition:background .25s,border-color .25s,transform .25s}
-  .foot .foot-social a:hover{background:var(--accent);border-color:var(--accent);transform:translateY(-2px)}
-  .foot .foot-social a svg{width:18px;height:18px;stroke:#cfcfd4;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:stroke .25s}
-  .foot .foot-social a:hover svg{stroke:#fff}
-  .foot h5{font-size:12.5px;letter-spacing:.13em;text-transform:uppercase;color:#6f6f78;font-weight:600;margin-bottom:20px}
-  .foot ul{list-style:none;display:flex;flex-direction:column;gap:14px}
-  .foot ul a{color:#cfcfd4;font-size:14.5px;transition:color .2s}
-  .foot ul a:hover{color:var(--accent)}
-  .foot-bottom{display:flex;align-items:center;justify-content:space-between;padding:28px 0;font-size:13.5px;color:#6f6f78;gap:18px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.08);margin-top:0}
-  .foot-bottom .foot-links{display:flex;gap:24px}
-  .foot-bottom .foot-links a{color:#6f6f78;font-size:13px;transition:color .2s}
-  .foot-bottom .foot-links a:hover{color:#cfcfd4}
-  @media(max-width:880px){.foot-top{grid-template-columns:1fr 1fr;gap:36px}.foot .brand-col{grid-column:1/-1}.foot .foot-social{margin-top:20px}}
-  @media(max-width:520px){.foot-top{grid-template-columns:1fr;gap:32px}.foot-bottom{flex-direction:column;text-align:center;gap:14px}}
+  .foot{background:#0c0c0f;padding:48px 0;text-align:center}
+  .foot .foot-inner{display:flex;align-items:center;justify-content:space-between;max-width:1240px;margin:0 auto;padding:0 40px}
+  .foot .foot-brand{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:700;font-size:16px;color:#fff}
+  .foot .foot-brand img{width:24px;height:24px;object-fit:contain}
+  .foot .foot-copy{font-size:13px;color:#5a5a63;letter-spacing:.01em}
+  .foot .foot-copy a{color:#5a5a63;transition:color .2s}
+  .foot .foot-copy a:hover{color:var(--accent)}
+  @media(max-width:520px){.foot .foot-inner{flex-direction:column;gap:12px;padding:0 22px;text-align:center}}
 
   /* reveal — content visible by default; entrance is a pure enhancement
      (keyframe animation, not an opacity transition that can get pinned at 0) */
@@ -494,51 +483,12 @@
 
 <!-- FOOTER -->
 <footer class="foot">
-  <div class="wrap">
-    <div class="foot-top">
-      <div class="brand-col">
-        <a class="brand" href="#top">
-          <span class="mark"><img class="w" src="assets/rg-logo-white.png" alt="" style="display:block" /></span>
-          <span>RGMedia.Group</span>
-        </a>
-        <p class="blurb">We create successful digital products — strategy, development, and marketing for ambitious teams.</p>
-        <div class="foot-social">
-          <a href="#" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="#cfcfd4" stroke="none"/></svg></a>
-          <a href="#" aria-label="LinkedIn" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
-          <a href="#" aria-label="X (Twitter)" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M4 4l16 16M20 4L4 20" stroke-width="2"/></svg></a>
-        </div>
-      </div>
-      <div>
-        <h5>Services</h5>
-        <ul>
-          <li><a href="#services">Digital Strategy</a></li>
-          <li><a href="#services">Product Development</a></li>
-          <li><a href="#services">Marketing Solutions</a></li>
-        </ul>
-      </div>
-      <div>
-        <h5>Company</h5>
-        <ul>
-          <li><a href="#approach">Our Approach</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li><a href="#" onclick="openModal(event)">Start a Project</a></li>
-        </ul>
-      </div>
-      <div>
-        <h5>Get in touch</h5>
-        <ul>
-          <li><a href="mailto:hello@rgmedia.group">hello@rgmedia.group</a></li>
-          <li><a href="https://www.rgmedia.group/" target="_blank" rel="noopener">rgmedia.group</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="foot-bottom">
-      <span>&copy; 2025 RGMedia.Group. All rights reserved.</span>
-      <div class="foot-links">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Service</a>
-      </div>
-    </div>
+  <div class="foot-inner">
+    <a class="foot-brand" href="#top">
+      <img src="assets/rg-logo-white.png" alt="" />
+      <span>RGMedia.Group</span>
+    </a>
+    <span class="foot-copy">&copy; 2025 All rights reserved.</span>
   </div>
 </footer>
 
