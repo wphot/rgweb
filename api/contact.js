@@ -79,7 +79,7 @@ export default async function handler(req, res) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        from: process.env.FROM_EMAIL || 'RG Website <onboarding@resend.dev>',
+        from: process.env.FROM_EMAIL || 'RG Media Group <hello@devs.rgmedia.group>',
         to: [process.env.CONTACT_EMAIL || 'devs@rgmedia.group'],
         subject: 'New Project Inquiry — RG Media Group',
         html: html,
