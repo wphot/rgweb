@@ -543,7 +543,13 @@
       </button>
     </div>
     <div class="modal-body">
-      <form id="contactForm" onsubmit="handleSubmit(event)">
+      <form id="contactForm" action="https://formsubmit.co/ajax/hello@rgmedia.group" method="POST" onsubmit="handleSubmit(event)">
+        <!-- FormSubmit config -->
+        <input type="hidden" name="_subject" value="New Project Inquiry — RG Media Group" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_next" value="" />
+        <input type="text" name="_honey" style="display:none" />
         <div class="form-row">
           <div class="form-group">
             <label>First Name <span>*</span></label>
@@ -634,17 +640,31 @@
   document.addEventListener('keydown',function(e){
     if(e.key==='Escape') closeModal();
   });
-  // Form submission
+  // Form submission — sends to hello@rgmedia.group via FormSubmit.co
   function handleSubmit(e){
     e.preventDefault();
+    const form=document.getElementById('contactForm');
     const btn=document.getElementById('submitBtn');
     btn.classList.add('sending');
     btn.textContent='Sending...';
-    // Simulate sending
-    setTimeout(()=>{
-      document.getElementById('contactForm').style.display='none';
+    const formData=new FormData(form);
+    fetch('https://formsubmit.co/ajax/hello@rgmedia.group',{
+      method:'POST',
+      body:formData
+    })
+    .then(res=>{
+      if(res.ok) return res.json();
+      throw new Error('Send failed');
+    })
+    .then(data=>{
+      form.style.display='none';
       document.getElementById('formSuccess').style.display='block';
-    },1500);
+    })
+    .catch(err=>{
+      btn.classList.remove('sending');
+      btn.textContent='Send Message \u2197';
+      alert('There was an error sending your message. Please try again or email us at hello@rgmedia.group');
+    });
   }
   // Wire up all "Start a project" links
   document.querySelectorAll('a[href="#contact"]').forEach(a=>{
