@@ -88,9 +88,9 @@ export default async function handler(req, res) {
     });
 
     if (!response.ok) {
-      const errorData = await response.text();
-      console.error('Resend API error:', errorData);
-      return res.status(502).json({ error: 'Failed to send email' });
+      const errorData = await response.json().catch(() => ({}));
+      console.error('Resend API error:', JSON.stringify(errorData));
+      return res.status(502).json({ error: errorData.message || 'Failed to send email' });
     }
 
     const data = await response.json();
