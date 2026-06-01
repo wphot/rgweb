@@ -83,7 +83,8 @@
     box-shadow:0 8px 22px -10px var(--accent);
   }
   .btn:hover{background:var(--accent-press);transform:translateY(-2px);box-shadow:0 14px 30px -10px var(--accent)}
-  .btn .arr{transition:transform .25s}
+  .btn .arr{transition:transform .25s;display:inline-flex;align-items:center;vertical-align:middle}
+  .btn .arr svg{display:block}
   .btn:hover .arr{transform:translate(3px,-3px)}
   .btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line);box-shadow:none}
   .btn.ghost:hover{background:var(--ink);color:var(--bg);border-color:var(--ink)}
@@ -359,7 +360,7 @@
       <a href="#services">What we do</a>
       <a href="#approach">Our approach</a>
       <a href="#contact">Contact</a>
-      <a class="btn open-modal" onclick="openModal(event)" style="font-weight: 700; color: rgb(255, 255, 255); line-height: 1">Start a project <span class="arr">↗</span></a>
+      <a class="btn open-modal" onclick="openModal(event)" style="font-weight: 700; color: rgb(255, 255, 255); line-height: 1">Start a project <span class="arr"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span></a>
     </div>
   </div>
 </nav>
@@ -377,7 +378,7 @@
           digital products.</h1>
         <p class="hero-sub reveal">Strategy, design and engineering under one roof — we partner with ambitious teams to build products people actually want to use.</p>
         <div class="hero-cta reveal">
-          <a class="btn" href="#services">Discover now <span class="arr">↗</span></a>
+          <a class="btn" href="#services">Discover now <span class="arr"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span></a>
           <a class="link-more" href="#approach">See how we work <span class="ln"></span></a>
         </div>
       </div>
@@ -473,7 +474,7 @@
           <h2>Let's Build Something Great Together</h2>
           <p>Tell us what you're working on. We'll come back within one business day with how we'd approach it.</p>
           <div class="hero-cta">
-            <a class="btn open-modal" onclick="openModal(event)" style="font-weight: 600">Start a project <span class="arr">↗</span></a>
+            <a class="btn open-modal" onclick="openModal(event)" style="font-weight: 600">Start a project <span class="arr"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span></a>
             <a class="btn ghost" href="mailto:hello@rgmedia.group">hello@rgmedia.group</a>
           </div>
         </div>
@@ -596,7 +597,7 @@
             <option value="tbd">Not sure yet</option>
           </select>
         </div>
-        <button type="submit" class="form-submit" id="submitBtn">Send Message <span class="arr">↗</span></button>
+        <button type="submit" class="form-submit" id="submitBtn">Send Message <span class="arr"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span></button>
         <p class="form-note">Or email us directly at <a href="mailto:hello@rgmedia.group">hello@rgmedia.group</a></p>
       </form>
       <div class="form-success" id="formSuccess" style="display:none">
@@ -605,7 +606,7 @@
         </div>
         <h4>Message Sent!</h4>
         <p>Thanks for reaching out. We'll review your project details and get back to you within one business day.</p>
-        <button class="btn" onclick="closeModal()" style="font-weight:600">Close <span class="arr">↗</span></button>
+        <button class="btn" onclick="closeModal()" style="font-weight:600">Close <span class="arr"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span></button>
       </div>
     </div>
   </div>
