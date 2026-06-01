@@ -2,5 +2,7 @@
   "name": "rgweb",
   "version": "1.0.0",
   "private": true,
-  "dependencies": {}
+  "scripts": {
+    "build": "mkdir -p public && cp index.html public/ && cp -r assets public/ && cp tweaks-app.jsx public/ && cp tweaks-panel.jsx public/"
+  }
 }
