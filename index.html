@@ -204,18 +204,15 @@
   .cta .gmark{position:absolute;left:-60px;bottom:-90px;width:340px;opacity:.06;z-index:1}
 
   /* footer */
-  .foot{background:#0c0c0f;color:#cfcfd4;padding:64px 0 0}
-  .foot-top{display:grid;grid-template-columns:1.4fr 1fr;gap:48px;max-width:1240px;margin:0 auto;padding:0 40px 48px;border-bottom:1px solid rgba(255,255,255,.08);align-items:start}
+  .foot{background:#0c0c0f;color:#cfcfd4;padding:56px 0 0}
+  .foot-top{display:flex;align-items:center;justify-content:space-between;max-width:1240px;margin:0 auto;padding:0 40px 40px;border-bottom:1px solid rgba(255,255,255,.08)}
   .foot-brand{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:700;font-size:17px;color:#fff}
-  .foot-brand img{width:28px;height:28px;object-fit:contain}
-  .foot-blurb{color:#5a5a63;font-size:14px;line-height:1.6;margin-top:12px;max-width:36ch}
-  .foot h5{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#4a4a52;font-weight:600;margin-bottom:16px}
-  .foot-links-col{display:flex;gap:40px}
-  .foot-links-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
-  .foot-links-col a{font-size:14px;color:#8d8d95;transition:color .2s}
-  .foot-links-col a:hover{color:#fff}
-  .foot-bottom{max-width:1240px;margin:0 auto;padding:24px 40px;font-size:12.5px;color:#4a4a52;display:flex;align-items:center;justify-content:space-between}
-  @media(max-width:520px){.foot-top{grid-template-columns:1fr;gap:32px;padding:0 22px 32px}.foot-bottom{flex-direction:column;gap:6px;padding:18px 22px;text-align:center}}
+  .foot-brand img{width:26px;height:26px;object-fit:contain}
+  .foot-nav{display:flex;gap:32px}
+  .foot-nav a{font-size:14px;color:#8d8d95;transition:color .2s}
+  .foot-nav a:hover{color:#fff}
+  .foot-bottom{max-width:1240px;margin:0 auto;padding:20px 40px;font-size:12.5px;color:#4a4a52;display:flex;align-items:center;justify-content:space-between}
+  @media(max-width:520px){.foot-top{flex-direction:column;gap:18px;padding:0 22px 28px;text-align:center}.foot-nav{flex-wrap:wrap;justify-content:center;gap:16px}.foot-bottom{flex-direction:column;gap:6px;padding:16px 22px;text-align:center}}
 
   /* reveal — content visible by default; entrance is a pure enhancement
      (keyframe animation, not an opacity transition that can get pinned at 0) */
@@ -488,30 +485,16 @@
 <!-- FOOTER -->
 <footer class="foot">
   <div class="foot-top">
-    <div>
-      <a class="foot-brand" href="#top">
-        <img src="assets/rg-logo-white.png" alt="" />
-        <span>RGMedia.Group</span>
-      </a>
-      <p class="foot-blurb">We create successful digital products — strategy, development, and marketing for ambitious teams.</p>
-    </div>
-    <div class="foot-links-col">
-      <div>
-        <h5>Navigate</h5>
-        <ul>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#approach">Approach</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </div>
-      <div>
-        <h5>Connect</h5>
-        <ul>
-          <li><a href="mailto:hello@rgmedia.group">hello@rgmedia.group</a></li>
-          <li><a href="#" onclick="openModal(event)">Start a project</a></li>
-        </ul>
-      </div>
-    </div>
+    <a class="foot-brand" href="#top">
+      <img src="assets/rg-logo-white.png" alt="" />
+      <span>RGMedia.Group</span>
+    </a>
+    <nav class="foot-nav">
+      <a href="#services">Services</a>
+      <a href="#approach">Approach</a>
+      <a href="mailto:hello@rgmedia.group">Contact</a>
+      <a href="#" onclick="openModal(event)">Start a project</a>
+    </nav>
   </div>
   <div class="foot-bottom">
     <span>&copy; 2025 RGMedia.Group</span>
