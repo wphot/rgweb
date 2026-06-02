@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>404 — RGMedia.Group</title>
+<link rel="icon" type="image/png" href="/assets/favicon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:'Hanken Grotesk',system-ui,sans-serif;
+    background:#0c0c0f;color:#f4f3ef;
+    min-height:100vh;display:flex;align-items:center;justify-content:center;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{text-align:center;padding:40px}
+  .brand{display:inline-flex;align-items:center;gap:10px;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:18px;color:#fff;margin-bottom:48px;text-decoration:none}
+  .brand img{width:28px;height:28px;object-fit:contain}
+  .num{
+    font-family:'Bricolage Grotesque',sans-serif;
+    font-size:clamp(100px,20vw,200px);
+    font-weight:800;line-height:.85;
+    letter-spacing:-.05em;
+    background:linear-gradient(135deg,#F02028,#ff6b6b);
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+    background-clip:text;
+  }
+  h1{
+    font-family:'Bricolage Grotesque',sans-serif;
+    font-size:clamp(22px,3.5vw,36px);
+    font-weight:600;letter-spacing:-.02em;
+    margin:24px 0 12px;color:#f4f3ef;
+  }
+  p{color:#8d8d95;font-size:16px;max-width:36ch;margin:0 auto 36px;line-height:1.6}
+  .btn{
+    display:inline-flex;align-items:center;gap:9px;
+    font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:15px;
+    background:#F02028;color:#fff;
+    padding:14px 28px;border-radius:100px;border:none;cursor:pointer;
+    text-decoration:none;
+    transition:transform .25s cubic-bezier(.2,.8,.2,1),background .2s,box-shadow .25s;
+    box-shadow:0 8px 22px -10px #F02028;
+  }
+  .btn:hover{background:#c8121a;transform:translateY(-2px);box-shadow:0 14px 30px -10px #F02028}
+  .ghost{
+    display:inline-flex;align-items:center;gap:6px;
+    font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:14px;
+    color:#8d8d95;text-decoration:none;margin-left:16px;
+    transition:color .2s;
+  }
+  .ghost:hover{color:#f4f3ef}
+  @media(max-width:520px){.ghost{margin-left:0;margin-top:16px}}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <a class="brand" href="/">
+      <img src="/assets/rg-logo-white.png" alt="" />
+      RGMedia.Group
+    </a>
+    <div class="num">404</div>
+    <h1>Page not found</h1>
+    <p>The page you're looking for doesn't exist or has been moved.</p>
+    <div>
+      <a class="btn" href="/">Back to home</a>
+      <a class="ghost" href="mailto:hello@rgmedia.group">Contact us</a>
+    </div>
+  </div>
+</body>
+</html>
