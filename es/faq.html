@@ -624,10 +624,12 @@ document.getElementById('contactModal').addEventListener('click',function(e){
 
   // Form submit — Cloudflare Turnstile (invisible) + Vercel API + Resend
   let turnstileToken='';
-  window.onTurnstileSuccess=function(token){turnstileToken=token;submitForm();};
+  let pendingSubmit=false;
+  window.onTurnstileSuccess=function(token){turnstileToken=token;if(pendingSubmit){pendingSubmit=false;submitForm();}};
   async function handleSubmit(e){
     e.preventDefault();
     if(typeof turnstile!=='undefined'&&turnstileToken===''){
+      pendingSubmit=true;
       turnstile.execute();
       return;
     }
