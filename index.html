@@ -109,8 +109,23 @@
   .btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line);box-shadow:none}
   .btn.ghost:hover{background:var(--ink);color:var(--bg);border-color:var(--ink)}
   .nav-toggle{display:none}
+  /* dark mode toggle */
+  .theme-toggle{
+    width:38px;height:38px;border-radius:12px;border:1px solid var(--line-soft);
+    background:var(--surface);cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    transition:background .2s,border-color .2s,transform .2s;
+    flex-shrink:0;margin-left:8px;color:var(--ink);
+  }
+  .theme-toggle:hover{background:var(--ghost);border-color:var(--line)}
+  .theme-toggle svg{width:18px;height:18px;stroke:var(--ink);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .theme-toggle .icon-moon{display:block}
+  .theme-toggle .icon-sun{display:none}
+  [data-theme="dark"] .theme-toggle .icon-moon{display:none}
+  [data-theme="dark"] .theme-toggle .icon-sun{display:block}
   @media(max-width:880px){
     .nav-links a:not(.btn){display:none}
+    .nav-links .theme-toggle{margin-left:0}
   }
 
   /* ---------- hero ---------- */
@@ -474,6 +489,7 @@
       <a href="#services">What we do</a>
       <a href="#approach">Our approach</a>
       <a href="#contact">Contact</a>
+      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode"><svg class="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></button>
       <a class="btn open-modal" onclick="openModal(event)" style="font-weight: 700; color: rgb(255, 255, 255); line-height: 1">Start a project <span class="arr"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span></a>
     </div>
   </div>
@@ -773,6 +789,19 @@
 
 
 <script>
+  // dark mode toggle
+  (function(){
+    const saved=localStorage.getItem('theme');
+    if(saved)document.documentElement.setAttribute('data-theme',saved);
+  })();
+  function toggleTheme(){
+    const html=document.documentElement;
+    const current=html.getAttribute('data-theme');
+    const next=current==='dark'?'light':'dark';
+    html.setAttribute('data-theme',next);
+    localStorage.setItem('theme',next);
+  }
+
   // nav scrolled state
   const nav=document.getElementById('nav');
   const onScroll=()=>nav.classList.toggle('scrolled',window.scrollY>16);
