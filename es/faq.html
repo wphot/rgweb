@@ -539,37 +539,39 @@
           </div>
         </div>
         <div class="form-group">
-          <label>Servicio <span>*</span></label>
+          <label>¿Qué necesitas? <span>*</span></label>
           <select class="form-select" name="service" required>
             <option value="" disabled selected>Selecciona un servicio</option>
             <option value="strategy">Estrategia Digital</option>
             <option value="development">Desarrollo de Productos</option>
             <option value="marketing">Soluciones de Marketing</option>
+            <option value="full">Paquete Completo (Estrategia + Dev + Marketing)</option>
             <option value="other">Otro</option>
           </select>
         </div>
         <div class="form-group">
-          <label>Descripción del proyecto <span>*</span></label>
-          <textarea class="form-textarea" name="message" placeholder="Cuéntanos sobre tu proyecto..." required></textarea>
+          <label>Cuéntanos sobre tu proyecto <span>*</span></label>
+          <textarea class="form-textarea" name="message" placeholder="Describe tu proyecto, objetivos, cronograma y requisitos específicos..." required></textarea>
         </div>
         <div class="form-group">
-          <label>Presupuesto estimado</label>
+          <label>Rango de presupuesto</label>
           <select class="form-select" name="budget">
             <option value="" disabled selected>Selecciona un rango</option>
-            <option value="5k-10k">$5,000 - $10,000</option>
-            <option value="10k-25k">$10,000 - $25,000</option>
-            <option value="25k-50k">$25,000 - $50,000</option>
-            <option value="50k+">$50,000+</option>
+            <option value="5k">$5,000 - $10,000</option>
+            <option value="10k">$10,000 - $25,000</option>
+            <option value="25k">$25,000 - $50,000</option>
+            <option value="50k">$50,000+</option>
+            <option value="tbd">No estoy seguro</option>
           </select>
         </div>
-        <button class="form-submit" type="submit">Enviar mensaje</button>
-        <p class="form-note">Al enviar, aceptas nuestra política de privacidad. Responderemos en 24 horas.</p>
+        <button type="submit" class="form-submit" id="submitBtn">Enviar mensaje <span class="arr"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span></button>
+        <p class="form-note">O escríbenos directamente a <a href="mailto:hello@rgmedia.group">hello@rgmedia.group</a></p>
       </form>
       <div class="form-success" id="formSuccess" style="display:none">
         <div class="check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
         <h4>¡Mensaje Enviado!</h4>
-        <p>Gracias por contactarnos. Te responderemos en 24 horas.</p>
-        <a class="btn" onclick="closeModal()" style="font-weight:600">Cerrar</a>
+        <p>Gracias por contactarnos. Revisaremos los detalles de tu proyecto y te responderemos en un día hábil.</p>
+        <button class="btn" onclick="closeModal()" style="font-weight:600">Cerrar <span class="arr"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span></button>
       </div>
     </div>
   </div>
@@ -603,6 +605,15 @@ function openModal(e){
 function closeModal(){
   document.getElementById('contactModal').classList.remove('open');
   document.body.style.overflow='';
+  setTimeout(()=>{
+    const form=document.getElementById('contactForm');
+    const success=document.getElementById('formSuccess');
+    form.style.display='';
+    form.reset();
+    success.style.display='none';
+    document.getElementById('submitBtn').classList.remove('sending');
+    document.getElementById('submitBtn').textContent='Enviar mensaje \u2197';
+  },400);
 }
 document.getElementById('contactModal').addEventListener('click',function(e){
   if(e.target===this)closeModal();
@@ -611,8 +622,8 @@ document.getElementById('contactModal').addEventListener('click',function(e){
 // Form submit
 async function handleSubmit(e){
   e.preventDefault();
-  const form=e.target;
-  const btn=form.querySelector('.form-submit');
+  const form=document.getElementById('contactForm');
+  const btn=document.getElementById('submitBtn');
   btn.classList.add('sending');
   btn.textContent='Enviando...';
   try{
@@ -624,7 +635,7 @@ async function handleSubmit(e){
     document.getElementById('formSuccess').style.display='block';
   }catch(err){
     btn.classList.remove('sending');
-    btn.textContent='Enviar mensaje';
+    btn.textContent='Enviar mensaje \u2197';
     alert('Hubo un error al enviar tu mensaje. Intenta de nuevo o escríbenos directamente a hello@rgmedia.group.');
   }
 }
