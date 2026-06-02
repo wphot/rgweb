@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "mkdir -p public && cp index.html public/ && cp faq.html public/ && cp 404.html public/ && cp sitemap.xml public/ && cp robots.txt public/ && cp -r assets public/"
+    "build": "mkdir -p public && mkdir -p public/es && cp index.html public/ && cp faq.html public/ && cp 404.html public/ && cp sitemap.xml public/ && cp robots.txt public/ && cp -r assets public/ && cp es/index.html public/es/ && cp es/faq.html public/es/"
   }
 }
