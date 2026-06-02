@@ -3,6 +3,8 @@
 <head>
 <!-- Google Analytics 4 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-4QM8KCP5L7"></script>
+<!-- Cloudflare Turnstile (invisible) -->
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -293,6 +295,7 @@
   }
   .form-submit:active{transform:translateY(0)}
   .form-submit.sending{opacity:.7;pointer-events:none}
+  .cf-turnstile[data-size="invisible"]{display:none}
   .form-note{
     text-align:center;margin-top:14px;
     font-size:13px;color:var(--muted);line-height:1.5;
@@ -572,6 +575,7 @@
             <option value="tbd">Not sure yet</option>
           </select>
         </div>
+        <div class="cf-turnstile" data-sitekey="0x4AAAAAAAxxxxxxxxxxxxxxxx" data-callback="onTurnstileSuccess" data-size="invisible"></div>
         <button type="submit" class="form-submit" id="submitBtn">Send Message <span class="arr"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span></button>
         <p class="form-note">Or email us directly at <a href="mailto:hello@rgmedia.group">hello@rgmedia.group</a></p>
       </form>
@@ -627,26 +631,36 @@ document.getElementById('contactModal').addEventListener('click',function(e){
   if(e.target===this)closeModal();
 });
 
-// Form submit
-async function handleSubmit(e){
-  e.preventDefault();
-  const form=document.getElementById('contactForm');
-  const btn=document.getElementById('submitBtn');
-  btn.classList.add('sending');
-  btn.textContent='Sending...';
-  try{
-    const fd=new FormData(form);
-    const data=Object.fromEntries(fd.entries());
-    const res=await fetch('/api/contact',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
-    if(!res.ok)throw new Error('Server error');
-    form.style.display='none';
-    document.getElementById('formSuccess').style.display='block';
-  }catch(err){
-    btn.classList.remove('sending');
-    btn.textContent='Send Message \u2197';
-    alert('There was an error sending your message. Please try again or email us directly at hello@rgmedia.group.');
+  // Form submit — Cloudflare Turnstile (invisible) + Vercel API + Resend
+  let turnstileToken='';
+  window.onTurnstileSuccess=function(token){turnstileToken=token;submitForm();};
+  async function handleSubmit(e){
+    e.preventDefault();
+    if(typeof turnstile!=='undefined'&&turnstileToken===''){
+      turnstile.execute();
+      return;
+    }
+    submitForm();
   }
-}
+  async function submitForm(){
+    const form=document.getElementById('contactForm');
+    const btn=document.getElementById('submitBtn');
+    btn.classList.add('sending');
+    btn.textContent='Sending...';
+    try{
+      const fd=new FormData(form);
+      const data=Object.fromEntries(fd.entries());
+      if(turnstileToken)data.cf_turnstile_token=turnstileToken;
+      const res=await fetch('/api/contact',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
+      if(!res.ok)throw new Error('Server error');
+      form.style.display='none';
+      document.getElementById('formSuccess').style.display='block';
+    }catch(err){
+      btn.classList.remove('sending');
+      btn.textContent='Send Message \u2197';
+      alert('There was an error sending your message. Please try again or email us directly at hello@rgmedia.group.');
+    }
+  }
 </script>
 </body>
 </html>

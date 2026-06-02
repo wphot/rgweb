@@ -3,6 +3,8 @@
 <head>
 <!-- Google Analytics 4 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-4QM8KCP5L7"></script>
+<!-- Cloudflare Turnstile (invisible) -->
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -384,6 +386,7 @@
   }
   .form-submit:active{transform:translateY(0)}
   .form-submit.sending{opacity:.7;pointer-events:none}
+  .cf-turnstile[data-size="invisible"]{display:none}
   .form-note{
     text-align:center;margin-top:14px;
     font-size:13px;color:var(--muted);line-height:1.5;
@@ -729,6 +732,7 @@
             <option value="tbd">Not sure yet</option>
           </select>
         </div>
+        <div class="cf-turnstile" data-sitekey="0x4AAAAAAAxxxxxxxxxxxxxxxx" data-callback="onTurnstileSuccess" data-size="invisible"></div>
         <button type="submit" class="form-submit" id="submitBtn">Send Message <span class="arr"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span></button>
         <p class="form-note">Or email us directly at <a href="mailto:hello@rgmedia.group">hello@rgmedia.group</a></p>
       </form>
@@ -773,15 +777,25 @@
   document.addEventListener('keydown',function(e){
     if(e.key==='Escape') closeModal();
   });
-  // Form submission — sends via Vercel API + Resend
+  // Form submission — Cloudflare Turnstile (invisible) + Vercel API + Resend
+  let turnstileToken='';
+  window.onTurnstileSuccess=function(token){turnstileToken=token;submitForm();};
   function handleSubmit(e){
     e.preventDefault();
+    if(typeof turnstile!=='undefined'&&turnstileToken===''){
+      turnstile.execute();
+      return;
+    }
+    submitForm();
+  }
+  function submitForm(){
     const form=document.getElementById('contactForm');
     const btn=document.getElementById('submitBtn');
     btn.classList.add('sending');
     btn.textContent='Sending...';
     const formData=new FormData(form);
     const data=Object.fromEntries(formData.entries());
+    if(turnstileToken)data.cf_turnstile_token=turnstileToken;
     fetch('/api/contact',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
@@ -794,7 +808,7 @@
     })
     .catch(()=>{
       btn.classList.remove('sending');
-      btn.innerHTML='Send Message <span class="arr"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>';
+      btn.innerHTML='Send Message <span class="arr"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7v10"/></svg></span>';
       alert('Error sending message. Please email us at hello@rgmedia.group');
     });
   }

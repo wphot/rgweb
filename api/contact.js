@@ -6,6 +6,32 @@ export default async function handler(req, res) {
 
   try {
     const body = req.body;
+    // Cloudflare Turnstile verification
+    const turnstileToken = body.cf_turnstile_token;
+    const turnstileSecret = process.env.TURNSTILE_SECRET_KEY;
+
+    // Only verify if secret key is configured (skip during development)
+    if (turnstileSecret) {
+      if (!turnstileToken) {
+        return res.status(403).json({ error: 'Bot verification failed. Please try again.' });
+      }
+      try {
+        const tfRes = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ secret: turnstileSecret, response: turnstileToken })
+        });
+        const tfData = await tfRes.json();
+        if (!tfData.success) {
+          console.error('Turnstile verification failed:', JSON.stringify(tfData));
+          return res.status(403).json({ error: 'Bot verification failed. Please try again.' });
+        }
+      } catch (tfErr) {
+        console.error('Turnstile API error:', tfErr.message);
+        return res.status(502).json({ error: 'Verification service unavailable. Please try again.' });
+      }
+    }
+
     const apiKey = process.env.RESEND_API_KEY;
 
     if (!apiKey) {
