@@ -22,6 +22,9 @@
 <meta name="twitter:title" content="RGMedia.Group — We create successful digital products." />
 <meta name="twitter:description" content="Strategy, design and engineering under one roof. We partner with ambitious teams to build products people actually want to use." />
 <meta name="twitter:image" content="https://raw.githubusercontent.com/wphot/rgweb/main/assets/rg-icon.png" />
+<link rel="canonical" href="https://rgmedia.group" />
+<link rel="alternate" hreflang="en" href="https://rgmedia.group" />
+<link rel="alternate" hreflang="es" href="https://rgmedia.group/es" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -238,7 +241,18 @@
   .reveal.in{animation:rg-in .72s cubic-bezier(.2,.8,.2,1) both}
   @media (prefers-reduced-motion:reduce){.reveal.in{animation:none}}
 
-  #tweaks-root{position:fixed;z-index:90}
+  /* ---------- FAQ section ---------- */
+  .faq{background:var(--surface);border:1px solid var(--line-soft);border-radius:20px;overflow:hidden}
+  .faq-item{border-bottom:1px solid var(--line-soft);padding:0}
+  .faq-item:last-child{border-bottom:none}
+  .faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;padding:22px 28px;font-family:var(--font-body);font-size:16px;font-weight:600;color:var(--ink);background:none;border:none;cursor:pointer;text-align:left;gap:16px;transition:color .2s}
+  .faq-q:hover{color:var(--accent)}
+  .faq-q svg{width:20px;height:20px;stroke:var(--muted);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;transition:transform .3s,stroke .2s}
+  .faq-item.open .faq-q svg{transform:rotate(45deg);stroke:var(--accent)}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s ease}
+  .faq-item.open .faq-a{max-height:300px}
+  .faq-a-inner{padding:0 28px 22px;font-size:15px;color:var(--ink-2);line-height:1.65}
+  @media(max-width:880px){.faq-q{padding:18px 22px;font-size:15px}.faq-a-inner{padding:0 22px 18px}}
 
   /* ---------- contact modal ---------- */
   .modal-overlay{
@@ -359,6 +373,138 @@
     .modal-head h3{font-size:22px}
   }
 </style>
+<!-- Schema.org JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://rgmedia.group/#organization",
+      "name": "RGMedia.Group",
+      "url": "https://rgmedia.group",
+      "logo": "https://raw.githubusercontent.com/wphot/rgweb/main/assets/rg-icon.png",
+      "description": "Digital product studio delivering strategy, development, and marketing solutions for ambitious teams.",
+      "email": "hello@rgmedia.group",
+      "sameAs": []
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://rgmedia.group/#website",
+      "url": "https://rgmedia.group",
+      "name": "RGMedia.Group",
+      "publisher": {"@id": "https://rgmedia.group/#organization"},
+      "inLanguage": ["en", "es"]
+    },
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://rgmedia.group/#location-ny",
+      "name": "RGMedia.Group",
+      "url": "https://rgmedia.group",
+      "address": {"@type": "PostalAddress", "addressLocality": "New York", "addressRegion": "NY", "addressCountry": "US"},
+      "parentOrganization": {"@id": "https://rgmedia.group/#organization"}
+    },
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://rgmedia.group/#location-clt",
+      "name": "RGMedia.Group",
+      "url": "https://rgmedia.group",
+      "address": {"@type": "PostalAddress", "addressLocality": "Charlotte", "addressRegion": "NC", "addressCountry": "US"},
+      "parentOrganization": {"@id": "https://rgmedia.group/#organization"}
+    },
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://rgmedia.group/#location-med",
+      "name": "RGMedia.Group",
+      "url": "https://rgmedia.group",
+      "address": {"@type": "PostalAddress", "addressLocality": "Medellin", "addressCountry": "CO"},
+      "parentOrganization": {"@id": "https://rgmedia.group/#organization"}
+    },
+    {
+      "@type": "Service",
+      "@id": "https://rgmedia.group/#service-strategy",
+      "name": "Digital Strategy",
+      "description": "Comprehensive digital strategies tailored to business objectives, market position, and growth targets. Includes market research, competitive analysis, digital roadmapping, and performance metrics definition.",
+      "provider": {"@id": "https://rgmedia.group/#organization"},
+      "url": "https://rgmedia.group#services",
+      "areaServed": ["US", "CO"]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://rgmedia.group/#service-development",
+      "name": "Product Development",
+      "description": "End-to-end product development from concept to launch, built with modern technologies and user-centered design. Covers web apps, mobile apps, platforms, and SaaS products.",
+      "provider": {"@id": "https://rgmedia.group/#organization"},
+      "url": "https://rgmedia.group#services",
+      "areaServed": ["US", "CO"]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://rgmedia.group/#service-marketing",
+      "name": "Marketing Solutions",
+      "description": "Data-driven marketing campaigns that connect with your audience and deliver measurable results. Includes SEO, paid media, content marketing, social media, and marketing automation.",
+      "provider": {"@id": "https://rgmedia.group/#organization"},
+      "url": "https://rgmedia.group#services",
+      "areaServed": ["US", "CO"]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://rgmedia.group/#faq",
+      "url": "https://rgmedia.group#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What does RGMedia.Group do?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "RGMedia.Group is a digital product studio that specializes in Digital Strategy, Product Development, and Marketing Solutions. They partner with ambitious teams to create successful digital products from concept to launch. The team operates across New York, Charlotte, and Medellin."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Where is RGMedia.Group located?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "RGMedia.Group has offices in New York City, USA; Charlotte, North Carolina, USA; and Medellin, Colombia."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much does a project cost?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Projects typically range from $5,000 for focused engagements to $50,000+ for comprehensive full-package solutions. Proposals are provided after understanding specific client needs."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does a typical project take?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Focused campaigns take 2-4 weeks. Full product development projects run 8-16 weeks from discovery to launch."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What technologies does RGMedia.Group work with?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "React, Next.js, Node.js, TypeScript for web; Swift and Kotlin for mobile; AWS, Vercel, Firebase for cloud. Marketing tools include data analytics, SEO, and marketing automation platforms."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I start a project with RGMedia.Group?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Click 'Start a project' on the website or email hello@rgmedia.group. The team responds within 24 hours with a proposed approach."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -474,6 +620,44 @@
             <h4>Measurable Impact</h4>
             <p>Every project is built with clear metrics and KPIs, ensuring we deliver tangible value and meaningful business outcomes.</p>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div>
+          <span class="sec-label"><span class="bar"></span> FAQ</span>
+          <h2 class="title" style="margin-top:18px">Frequently asked questions.</h2>
+        </div>
+      </div>
+      <div class="faq reveal">
+        <div class="faq-item">
+          <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">What does RGMedia.Group do?<svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="faq-a"><div class="faq-a-inner">RGMedia.Group is a digital product studio that specializes in three core disciplines: Digital Strategy, Product Development, and Marketing Solutions. We partner with ambitious teams and businesses to create successful digital products — from concept and strategy to engineering, launch, and growth. Our team operates across New York, Charlotte, and Medellin, combining global expertise with local insights to deliver measurable results for our clients.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Where is RGMedia.Group located?<svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="faq-a"><div class="faq-a-inner">RGMedia.Group has offices in three strategic locations: New York City, USA; Charlotte, North Carolina, USA; and Medellin, Colombia. This multi-city presence allows us to serve clients across North America and Latin America with localized support while maintaining a cohesive, collaborative team culture.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">How much does a project cost?<svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="faq-a"><div class="faq-a-inner">Project costs vary based on scope, complexity, and timeline. Our projects typically range from $5,000 for focused engagements to $50,000+ for comprehensive, full-package solutions. We provide transparent proposals after understanding your specific needs, so you always know exactly what you're investing in and the expected return.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">How long does a typical project take?<svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="faq-a"><div class="faq-a-inner">Timelines depend on the project scope. A focused marketing campaign or strategy workshop can be delivered in 2-4 weeks. Full product development projects typically run 8-16 weeks from discovery to launch. We establish clear milestones and keep you updated throughout the process, ensuring on-time delivery without compromising quality.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">What technologies do you work with?<svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="faq-a"><div class="faq-a-inner">We work with modern, industry-leading technologies tailored to each project's needs. Our tech stack includes React, Next.js, Node.js, TypeScript for web development; Swift and Kotlin for mobile; and a range of cloud platforms like AWS, Vercel, and Firebase. For marketing, we leverage data analytics platforms, SEO tools, and marketing automation systems to drive measurable growth.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">How do I start a project with RGMedia.Group?<svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="faq-a"><div class="faq-a-inner">Getting started is easy. Click the "Start a project" button on our website or email us directly at hello@rgmedia.group. Tell us about your project, goals, and timeline. Our team will review your inquiry and respond within 24 hours with a proposed approach and next steps. We begin every engagement with a discovery session to ensure full alignment before any development begins.</div></div>
         </div>
       </div>
     </div>
