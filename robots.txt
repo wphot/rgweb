@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://rgmedia.group/sitemap.xml
+Sitemap: https://www.rgmedia.group/sitemap.xml
